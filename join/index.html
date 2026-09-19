@@ -1,0 +1,137 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DoMenu — family invite</title>
+<meta name="robots" content="noindex">
+<meta property="og:title" content="DoMenu — family invite">
+<meta property="og:description" content="Cook together: one catalog of dishes for the whole family.">
+<link rel="stylesheet" href="/domenu-site/style.css">
+<style>
+.code{display:block;font:700 30px/1.1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.14em;text-align:center;background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:20px 12px;margin:22px 0 18px}
+.open{display:block;text-align:center;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:17px;padding:16px 20px;border-radius:20px}
+.open:hover{opacity:.92}
+.stores{display:flex;flex-wrap:wrap;gap:10px 18px;margin:18px 0 0;font-size:15px}
+.hint{color:var(--muted);font-size:14px;margin:14px 0 0}
+</style>
+</head><body>
+<header>
+  <a class="brand" href="/domenu-site/"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="21.8" y="19" width="4.4" height="11" rx="2.2" fill="#C97A3F"/><rect x="29.8" y="13" width="4.4" height="17" rx="2.2" fill="#C97A3F"/><rect x="37.8" y="19" width="4.4" height="11" rx="2.2" fill="#C97A3F"/><path d="M13 38 H51 A19 13 0 0 1 13 38 Z" fill="#1E1D1B"/></svg>DoMenu</a>
+  <nav><a href="/domenu-site/">Support</a><a href="/domenu-site/privacy/">Privacy Policy</a><a href="/domenu-site/terms/">Terms of Use</a><a href="/domenu-site/delete-account/">Delete account</a></nav>
+</header>
+<main>
+<div class="lang"><a href="#" data-lang="en">English</a><a href="#" data-lang="ru">Русский</a></div>
+
+<h1 id="t-title">You have been invited to a DoMenu family</h1>
+<p class="meta" id="t-sub">A shared catalog of dishes, dinner match and sync — for two.</p>
+
+<code class="code" id="code">— — — —</code>
+
+<a class="open" id="open" href="#" hidden>Open in DoMenu</a>
+
+<p class="hint" id="t-hint">The button works if DoMenu is already installed. If it is not, install the app and enter the code above: Family → I have a code.</p>
+
+<h2 id="t-install">Install DoMenu</h2>
+<div class="stores">
+  <a href="https://apps.apple.com/app/id6813118029">App Store</a>
+  <a href="https://play.google.com/store/apps/details?id=app.domenu">Google Play</a>
+</div>
+
+<p class="hint" id="t-expiry">The code works once and expires in 7 days: as soon as your partner joins, the link stops working.</p>
+</main>
+<footer>© 2026 Maksim Larchanka · DoMenu</footer>
+
+<script>
+(function () {
+  // Алфавит кода — тот же, что в приложении и в серверном констрейнте (B6.2):
+  // восемь символов без похожих пар. Всё остальное страница за код не считает.
+  var SHAPE = /^[A-HJ-NP-Z2-9]{8}$/;
+
+  var T = {
+    en: {
+      title: 'You have been invited to a DoMenu family',
+      sub: 'A shared catalog of dishes, dinner match and sync — for two.',
+      open: 'Open in DoMenu',
+      hint: 'The button works if DoMenu is already installed. If it is not, install the app and enter the code above: Family → I have a code.',
+      install: 'Install DoMenu',
+      expiry: 'The code works once and expires in 7 days: as soon as your partner joins, the link stops working.',
+      noCode: 'There is no invitation code in this link',
+      noCodeSub: 'Ask for the link again, or open DoMenu and enter the eight-character code by hand: Family → I have a code.'
+    },
+    ru: {
+      title: 'Вас зовут в семью DoMenu',
+      sub: 'Общий каталог блюд, метч ужина и синхронизация — на двоих.',
+      open: 'Открыть в DoMenu',
+      hint: 'Кнопка сработает, если DoMenu уже установлен. Если нет — поставьте приложение и введите код выше: Семья → У меня есть код.',
+      install: 'Установить DoMenu',
+      expiry: 'Код одноразовый и живёт 7 дней: как только партнёр вступит, ссылка перестанет работать.',
+      noCode: 'В этой ссылке нет кода приглашения',
+      noCodeSub: 'Попросите прислать ссылку ещё раз или откройте DoMenu и введите восьмизначный код руками: Семья → У меня есть код.'
+    }
+  };
+
+  function codeFromLocation() {
+    var params = new URLSearchParams(location.search);
+    var raw = params.get('c') || params.get('code') || location.hash.slice(1);
+    // Путь `/join/CODE` статический хостинг отдаёт четырёхсоткой, но ссылка
+    // такой формы могла уехать с другого хостинга — разбираем и её.
+    if (!raw) {
+      var tail = location.pathname.split('/').filter(Boolean).pop();
+      if (tail && tail !== 'join') raw = tail;
+    }
+    raw = (raw || '').trim().replace(/[\s-]/g, '').toUpperCase();
+    return SHAPE.test(raw) ? raw : null;
+  }
+
+  var code = codeFromLocation();
+  var el = {
+    title: document.getElementById('t-title'),
+    sub: document.getElementById('t-sub'),
+    code: document.getElementById('code'),
+    open: document.getElementById('open'),
+    hint: document.getElementById('t-hint'),
+    install: document.getElementById('t-install'),
+    expiry: document.getElementById('t-expiry')
+  };
+
+  function render(lang) {
+    var t = T[lang] || T.en;
+    document.documentElement.lang = lang;
+    el.install.textContent = t.install;
+    if (code) {
+      el.title.textContent = t.title;
+      el.sub.textContent = t.sub;
+      el.code.textContent = code;
+      el.open.textContent = t.open;
+      el.hint.textContent = t.hint;
+      el.expiry.textContent = t.expiry;
+    } else {
+      el.title.textContent = t.noCode;
+      el.sub.textContent = t.noCodeSub;
+      el.hint.textContent = '';
+      el.expiry.textContent = '';
+    }
+  }
+
+  if (code) {
+    // Открывает приложение собственной схемой: она работает и без Universal
+    // Links, и на телефоне, где ссылку переслали из мессенджера.
+    el.open.href = 'domenu://join/' + code;
+    el.open.hidden = false;
+    // Баннер Safari сверху — вторая дорога в тот же магазин.
+    var banner = document.createElement('meta');
+    banner.name = 'apple-itunes-app';
+    banner.content = 'app-id=6813118029, app-argument=domenu://join/' + code;
+    document.head.appendChild(banner);
+  } else {
+    el.code.hidden = true;
+  }
+
+  var lang = (navigator.language || 'en').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en';
+  render(lang);
+
+  Array.prototype.forEach.call(document.querySelectorAll('.lang a'), function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      render(a.getAttribute('data-lang'));
+    });
+  });
+})();
+</script>
+</body></html>
