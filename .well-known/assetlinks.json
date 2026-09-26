@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.domenu",
+      "sha256_cert_fingerprints": [
+        "53:09:4D:6E:B7:DC:E4:8F:EE:41:4A:FB:F2:36:35:E7:3E:22:B7:1C:95:66:9C:B4:CD:FF:91:6B:30:B6:27:99",
+        "58:D4:87:41:CB:21:E7:E4:68:8F:96:52:2F:B3:36:60:FD:C9:78:4F:18:06:6A:31:3F:31:F7:C2:07:57:7D:96"
+      ]
+    }
+  }
+]

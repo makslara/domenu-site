@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["9M8BPF5DD2.app.domenu"],
+        "components": [
+          {
+            "/": "/join*",
+            "comment": "Приглашение в семью: /join/?c=КОД и /join/КОД"
+          }
+        ]
+      }
+    ]
+  }
+}
