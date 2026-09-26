@@ -2,7 +2,7 @@
 
 Лендинг и обязательные для сторов страницы приложения DoMenu.
 
-Сейчас раздаётся GitHub Pages: https://makslara.github.io/domenu-site/
+Сейчас раздаётся GitHub Pages: https://domenuapp.com/
 
 ## Структура
 

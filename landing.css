@@ -198,3 +198,24 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:38px 0 46
 .deck-btns .yes svg{stroke:none;fill:#fff}
 @media(max-width:940px){.deck{margin-bottom:12px}}
 .deck-card:nth-child(1) .meta,.deck-card:nth-child(2) .meta{visibility:hidden}
+
+/* — неделя меню — */
+.week{background:var(--surface);border:1px solid var(--border);border-radius:26px;padding:22px 22px 24px;box-shadow:0 24px 50px -34px rgba(30,29,27,.4)}
+.week-head{display:flex;align-items:center;justify-content:space-between;padding:0 4px 14px;border-bottom:1px solid var(--border);margin:0 0 6px}
+.week-head b{font-size:17px;letter-spacing:-.015em}
+.week-head span{font-size:13px;font-weight:600;color:var(--accent-dark);background:var(--accent-tint);border-radius:999px;padding:4px 10px}
+.week-row{display:flex;align-items:center;gap:13px;padding:10px 4px;border-bottom:1px solid var(--border)}
+.week-row:last-child{border-bottom:0}
+.week-row .day{width:34px;flex:none;font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.week-row img{width:42px;height:42px;border-radius:12px;object-fit:cover;flex:none}
+.week-row .dish{flex:1;min-width:0;font-size:16px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.week-row .auto{font-size:12px;font-weight:600;color:var(--warm-dark);background:var(--warm-tint);border-radius:999px;padding:3px 9px;flex:none}
+.week-row.today{background:var(--accent-tint);border-radius:14px;margin:0 -8px;padding:10px 12px;border-bottom:0}
+.week-row.today .day{color:var(--accent-deep)}
+.week-row.empty .dish{color:var(--disabled,#A8A29A);font-weight:500}
+.week-row .plus{width:42px;height:42px;border-radius:12px;border:1.5px dashed var(--divider);flex:none;display:grid;place-items:center;color:var(--muted);font-size:20px;line-height:1}
+.menu-week{background:var(--bg);padding-top:0}
+.menu-week .hero-grid{align-items:center;gap:64px}
+ul.ticks{list-style:none;padding:0;margin:22px 0 0}
+ul.ticks li{position:relative;padding:0 0 0 28px;margin:0 0 11px;font-size:16px;color:var(--ink-2)}
+ul.ticks li::before{content:"";position:absolute;left:2px;top:7px;width:12px;height:7px;border:2px solid var(--accent);border-top:0;border-right:0;transform:rotate(-45deg)}
